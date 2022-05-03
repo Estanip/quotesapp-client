@@ -13,7 +13,7 @@ export function Counter() {
 
   useEffect(() => {
     setAverage("Carlos")
-  }, [])
+  }, [average])
 
   return (
     <div>

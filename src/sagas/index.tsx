@@ -1,15 +1,23 @@
-import { call, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
 import actions from '../actions_types';
 import { api } from '../utils';
 
 function* getAverage(): any {
-    const result = yield call(api, 'get', 'average')
-    console.log("HOLAAA SAGA", result)
-    console.log("Holis");
+    try {
+        const data = yield call(api, 'get', 'average')
+        if(data) {
+            yield put({
+                payload: data,
+                type: actions.GET_AVERAGE_SUCCESS
+            })
+        }
+    }
+    catch (e) {
+        console.log(e)
+    }
 }
 
-// Watchers
 export function* rootSaga() {
-    yield takeEvery(actions.GET_AVERAGE, getAverage)
+    yield takeEvery(actions.GET_AVERAGE_REQUEST, getAverage)
 };

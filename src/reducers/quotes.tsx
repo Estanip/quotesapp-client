@@ -8,7 +8,7 @@ const initialState: IQuotes = {
 
 export function quotesReducer(state = initialState, action: any): {} {
     switch (action.type) {
-        case actions.GET_AVERAGE: {
+        case actions.GET_AVERAGE_SUCCESS: {
             return {
                 ...state,
                 average: action.payload
