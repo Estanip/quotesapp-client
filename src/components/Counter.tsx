@@ -6,25 +6,27 @@ import styles from './Counter.module.css';
 
 export function Counter() {
   const dispatch = useDispatch();
-  const state = useSelector((state: any) => state);
+  const data = useSelector((state: any) => state.reducer.quotes);
   const [ average, setAverage ] = useState("string");
 
-  console.log(state.reducer.quotes)
-
   useEffect(() => {
-    setAverage("Carlos")
-  }, [average])
+    dispatch(getAverage())
+  }, [dispatch])
+
+  const get = () => {
+    dispatch(getAverage())
+    setAverage(data.average.average_buy_price)
+  }
 
   return (
     <div>
       <div className={styles.row}>
       </div>
       <div className={styles.row}>
-        <button onClick={() => dispatch(getAverage())}>APRETAR</button>
+        <button onClick={() => get()}>APRETAR</button>
         <input
           className={styles.textbox}
           value={average}
-          onChange={(e) => setAverage(e.target.value)}
         />
       </div>
     </div>

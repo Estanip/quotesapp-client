@@ -6,6 +6,7 @@ import { api } from '../utils';
 function* getAverage(): any {
     try {
         const data = yield call(api, 'get', 'average')
+        console.log("DATA", data)
         if(data) {
             yield put({
                 payload: data,
