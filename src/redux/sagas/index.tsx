@@ -36,7 +36,6 @@ function* getQuotes(): any {
 function* getSlippages(): any {
     try {
         const data = yield call(api, 'get', 'slippage')
-        console.log("DATA", data)
         if (data) {
             yield put({
                 payload: data,
