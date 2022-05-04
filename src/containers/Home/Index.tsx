@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 
+import Calculator from '../../components/Calculator/Index';
 import Cards from '../../components/Cards/Index';
+import Footer from '../../components/Footer/Index';
 import Header from '../../components/Header/Index';
 
 export default function Home() {
@@ -9,7 +10,11 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <Cards />
+      <div style={{ display: 'flex', width: '100%', marginTop: '80px'}}>
+        <Cards />
+        <Calculator />
+      </div>
+      <Footer />
     </div>
   );
 }

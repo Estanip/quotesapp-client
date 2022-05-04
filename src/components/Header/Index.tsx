@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, Container, ListGroup, Navbar, Spinner } from 'react-bootstrap';
+import { Card, Container, Navbar, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getAverage } from '../../redux/actions';
@@ -14,21 +14,28 @@ export default function Header() {
 
 
     return (
-        <Navbar expand="sm" variant="dark" bg="dark" style={{ marginBottom: '30px' }}>
+        <Navbar expand="sm" variant="dark" bg="secondary" style={{ marginBottom: '30px' }}>
             <Container>
                 <Navbar.Brand>ENCONTRA LA MEJOR COTIZACION</Navbar.Brand>
                 <Navbar.Brand>
                     <div>
-                        <Card style={{ padding: '10px' }}>
-                            <Card.Title style={{ color: 'red', fontSize: '15px' }}>Cotizacion Promedio</Card.Title>
-                            <ListGroup style={{ display: 'flex', flexDirection: 'row', height: '40px' }}>
-                                <ListGroup.Item style={{ height: '100%', fontSize: '12px', marginRight: '5px' }}>Compra: {average_buy_price ? average_buy_price : <Spinner size='sm' animation="border" variant="primary" />}</ListGroup.Item>
-                                <ListGroup.Item style={{ height: '100%', fontSize: '12px', marginLeft: '5px'}} >Venta: {average_sell_price}</ListGroup.Item>
-                            </ListGroup>
+                        <Card bg='warning' style={{ padding: '10px', marginRight: '-100px' }}>
+                            <Card.Title style={{ color: 'grey', fontSize: '15px' }}>COTIZACION PROMEDIO</Card.Title>
+                            <Card.Text>
+                                <small style={{ fontSize: '13px', marginLeft: '15px' }}>
+                                    COMPRA: <strong>{average_buy_price ? average_buy_price : <Spinner size='sm' animation="border" variant="secondary" />}</strong>
+                                </small>
+                                <small style={{ marginLeft: '10px', marginRight: '10px', fontSize: '20px' }}>
+                                    |
+                                </small>
+                                <small style={{ fontSize: '13px', marginRight: '15px' }}>
+                                    VENTA: <strong>{average_sell_price ? average_sell_price : <Spinner size='sm' animation="border" variant="secondary" />}</strong>
+                                </small>
+                            </Card.Text>
                         </Card>
                     </div>
                 </Navbar.Brand>
             </Container>
-        </Navbar>
+        </Navbar >
     );
 }

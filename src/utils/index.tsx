@@ -1,10 +1,13 @@
 import axios from 'axios'
 
+const API_DEV = 'http://localhost:3008/api'
+const API_PROD = 'https://pluggy-api-challenge.herokuapp.com/api'
+
 export const api = (method: string, endpoint: string) =>
   new Promise((resolve, reject) => {
     axios({
       method,
-      url: `http://localhost:3008/api/${endpoint}`
+      url: `${API_DEV}/${endpoint}`
     })
       .then(({ data }) => {
         resolve(data)
