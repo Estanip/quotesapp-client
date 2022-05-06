@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Card, Col, Container, ListGroup, ListGroupItem, Row, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 import { getQuotes, getSlippages } from '../../redux/actions';
 
 export default function Cards() {
@@ -15,15 +14,15 @@ export default function Cards() {
 
     useEffect(() => {
         dispatch(getQuotes())
-        dispatch(getSlippages())
     },[]);
 
-
     useEffect(() => {
-        if (quotes.length > 0 && slippages.length > 0) getQuotesList()
+        if (quotes) getQuotesList()
     }, [quotes]);
 
     const getQuotesList = () => {
+
+        dispatch(getSlippages())
 
         const result: any = [];
 

@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Card, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { getAverage } from '../../redux/actions';
+import { useSelector } from 'react-redux';
 
 export default function Calculator() {
 
     const [currency, setCurrency] = useState(0);
     const [convertCurrency, setConvertCurrency] = useState(0);
 
-    const dispatch = useDispatch();
-    const { average_buy_price, average_sell_price } = useSelector((state: any) => state.reducer.quotes.average);
-
-    useEffect(() => {
-        if (!average_buy_price) dispatch(getAverage())
-    });
+    const { average_sell_price } = useSelector((state: any) => state.reducer.quotes.average);
 
     const getConvertion = (currency:any) => {
         const result = currency * average_sell_price;
@@ -44,7 +37,7 @@ export default function Calculator() {
                             style={{ width: '200px' }}>
                             <FormControl
                                 aria-label="Small"
-                                defaultValue={convertCurrency ? `$ ${convertCurrency}` : 0}
+                                value={convertCurrency ? `$ ${convertCurrency}` : 0}
                             />
                         </InputGroup>
                         <Button variant="success" style={{ padding: '10px', width: '150px' }} onClick={() => getConvertion(currency)}>CONVERTIR</Button>

@@ -20,14 +20,14 @@ function* getAverage(): any {
 
 function* getQuotes(): any {
     try {
-        let skipAtFirstTime = true;
+        let delayOn = false;
         while (true) {
             const data = yield call(api, 'get', 'quotes')
             if (data) {
-                if (!skipAtFirstTime) {
+                if (delayOn) {
                     yield delay(10000)
                 }
-                skipAtFirstTime = false
+                delayOn = true;
                 yield put({
                     payload: data,
                     type: actions.GET_QUOTES_SUCCESS
