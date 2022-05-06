@@ -44,7 +44,7 @@ export default function Calculator() {
                             style={{ width: '200px' }}>
                             <FormControl
                                 aria-label="Small"
-                                value={convertCurrency ? `$ ${convertCurrency}` : 0}
+                                defaultValue={convertCurrency ? `$ ${convertCurrency}` : 0}
                             />
                         </InputGroup>
                         <Button variant="success" style={{ padding: '10px', width: '150px' }} onClick={() => getConvertion(currency)}>CONVERTIR</Button>

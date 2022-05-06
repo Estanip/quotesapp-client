@@ -14,9 +14,10 @@ export default function Cards() {
     const { slippages } = useSelector((state: any) => state.reducer.quotes);
 
     useEffect(() => {
-        if (quotes.length === 0) dispatch(getQuotes())
-        if (slippages.length === 0) dispatch(getSlippages())
-    });
+        dispatch(getQuotes())
+        dispatch(getSlippages())
+    },[]);
+
 
     useEffect(() => {
         if (quotes.length > 0 && slippages.length > 0) getQuotesList()
@@ -47,7 +48,7 @@ export default function Cards() {
         <Container style={{ width: '60%' }}>
             <Row>
                 {
-                    quotes.length > 0 ?
+                    quotesList.length > 0 ?
                         quotesList.map((e: any, i: number) => {
                             return (
                                 <Col key={i}>
