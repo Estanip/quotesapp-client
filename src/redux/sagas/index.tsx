@@ -16,7 +16,7 @@ function* getAverage(): any {
     catch (e) {
         console.log(e)
     }
-}
+};
 
 function* getQuotes(): any {
     try {
@@ -38,7 +38,7 @@ function* getQuotes(): any {
     catch (e) {
         console.log(e)
     }
-}
+};
 
 function* getSlippages(): any {
     try {
@@ -53,7 +53,7 @@ function* getSlippages(): any {
     catch (e) {
         console.log(e)
     }
-}
+};
 
 export function* rootSaga() {
     yield all([
