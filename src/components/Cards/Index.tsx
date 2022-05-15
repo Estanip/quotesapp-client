@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Container, ListGroup, ListGroupItem, Row, Spinner } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useTypedSelector } from '../../Hooks/UseTypedSelector';
+import { IQuotesLIst, IState } from '../../interfaces';
 
 import { getQuotes, getSlippages } from '../../redux/actions';
 import './Cards.css';
 
 export default function Cards() {
 
-    const [quotesList, setQuotes] = useState([]);
+    const [quotesList, setQuotes] = useState(Array);
 
     const dispatch = useDispatch();
-    const { quotes } = useSelector((state: any) => state.reducer.quotes);
-    const { average} = useSelector((state: any) => state.reducer.quotes);
-    const { slippages } = useSelector((state: any) => state.reducer.quotes);
+
+    const {average} = useTypedSelector((state) => state.quotes)
+    const {quotes}:IState = useTypedSelector((state) => state.quotes)
+    const {slippages}:IState = useTypedSelector((state) => state.quotes)
 
     useEffect(() => {
         dispatch(getQuotes())
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (quotes.length > 0 && average) getQuotesList()
-    }, [quotes]);
+    }, [quotes, average]);
 
     const getQuotesList = () => {
 
         dispatch(getSlippages())
 
-        const result: any = [];
+        const result:Array<IQuotesLIst> = [];
 
         if (quotes.length > 0 && slippages.length > 0) {
 

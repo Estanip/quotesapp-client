@@ -6,10 +6,8 @@ import { rootReducer } from '../reducers/index';
 const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
-    reducer: {
-        reducer: rootReducer,
-    },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware:any) => getDefaultMiddleware({
         serializableCheck: false,
         immutableCheck: false,
         thunk: false

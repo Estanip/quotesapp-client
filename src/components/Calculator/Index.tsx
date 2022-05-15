@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Card, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useTypedSelector } from '../../Hooks/UseTypedSelector';
 
 import './Calculator.css';
 
@@ -9,7 +9,8 @@ export default function Calculator() {
     const [currency, setCurrency] = useState(0);
     const [convertCurrency, setConvertCurrency] = useState(0);
 
-    const { average_sell_price } = useSelector((state: any) => state.reducer.quotes.average);
+    const {average} = useTypedSelector((state) => state.quotes)
+    const {average_sell_price} = average
 
     const getConvertion = (currency:any) => {
         const result = currency * average_sell_price;

@@ -7,8 +7,34 @@ export interface IActions {
     GET_SLIPPAGE_SUCCESS: string;
 };
 
-export interface IQuotes {
-    average: {};
-    quotes: [];
-    slippages: [];
-}
+export interface IState {
+    average: IAverage;
+    quotes: IQuote[];
+    slippages: ISlippage[];
+};
+
+export interface IQuote {
+    buy_price: number,
+    sell_price: number,
+    source: string;
+};
+
+export interface IAverage {
+    average_sell_price:number,
+    average_buy_price:number
+};
+
+export interface ISlippage {
+    buy_price_slippage: number;
+    sell_price_slippage: number;
+    source: string;
+    name: string;
+};
+
+export interface IQuotesLIst {
+    name: string,
+    buy_price: number,
+    sell_price: number,
+    buy_slippage: number,
+    sell_slippage: number
+};

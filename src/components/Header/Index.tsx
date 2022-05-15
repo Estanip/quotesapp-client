@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
 import { Card, Container, Navbar, Spinner } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useTypedSelector } from '../../Hooks/UseTypedSelector';
+import { IState } from '../../interfaces';
 
 import { getAverage } from '../../redux/actions';
 import './Header.css';
 
 export default function Header() {
     const dispatch = useDispatch();
-    const { average_buy_price, average_sell_price } = useSelector((state: any) => state.reducer.quotes.average);
-    const { quotes } = useSelector((state: any) => state.reducer.quotes);
+
+    const {average} = useTypedSelector((state) => state.quotes)
+    const {average_sell_price, average_buy_price} = average
+
+    const {quotes}:IState = useTypedSelector((state) => state.quotes)
 
     useEffect(() => {
         if (quotes.length > 0) dispatch(getAverage())
