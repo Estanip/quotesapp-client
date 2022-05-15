@@ -6,7 +6,7 @@ const initialState: IQuotes = {
     average: {},
     quotes: [],
     slippages: []
-}
+};
 
 export function quotesReducer(state = initialState, action: any): {} {
     switch (action.type) {
