@@ -14,7 +14,7 @@ const store = configureStore({
         immutableCheck: false,
         thunk: false
       }).concat(sagaMiddleware)
-})
+});
 
 sagaMiddleware.run(rootSaga);
 
