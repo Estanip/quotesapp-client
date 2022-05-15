@@ -1,3 +1,3 @@
 HEROKU DEPLOY:
 
-https://pluggy-client-challenge.herokuapp.com/
+https://client-challenge-pluggy.herokuapp.com/
