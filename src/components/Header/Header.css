@@ -1,0 +1,21 @@
+.card { 
+    padding: 10px;
+    margin-right: -100px;
+};
+
+.title {
+    color: grey;
+    font-size: 15px;
+};
+
+.quotes_item {
+    font-size: 13px;
+    margin-left: auto;
+    margin-left: auto;
+};
+
+..quotes_limit {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+};

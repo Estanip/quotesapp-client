@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Button, Card, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
+import './Calculator.css';
+
 export default function Calculator() {
 
     const [currency, setCurrency] = useState(0);
@@ -15,11 +17,11 @@ export default function Calculator() {
     }
 
     return (
-        <Container style={{ width: '25%', marginRight: '50px' }}>
+        <Container style={styles.cal_container}>
             <Row>
                 <Card>
                     <Card.Header>Conversor de Moneda</Card.Header>
-                    <Card.Body style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }}>
+                    <Card.Body style={styles.cal_body}>
                         <InputGroup
                             size="sm"
                             className="mb-3"
@@ -37,6 +39,7 @@ export default function Calculator() {
                             style={{ width: '200px' }}>
                             <FormControl
                                 aria-label="Small"
+                                onChange={(e:any) => console.log(e)}
                                 value={convertCurrency ? `$ ${convertCurrency}` : 0}
                             />
                         </InputGroup>
@@ -47,3 +50,8 @@ export default function Calculator() {
         </Container>
     );
 }
+
+const styles = {
+    cal_container: { width: '25%', marginRight: '50px' },
+    cal_body: { display: 'block', marginLeft: 'auto', marginRight: 'auto' }
+};

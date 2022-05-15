@@ -3,6 +3,7 @@ import { Card, Col, Container, ListGroup, ListGroupItem, Row, Spinner } from 're
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getQuotes, getSlippages } from '../../redux/actions';
+import './Cards.css';
 
 export default function Cards() {
 
@@ -10,14 +11,15 @@ export default function Cards() {
 
     const dispatch = useDispatch();
     const { quotes } = useSelector((state: any) => state.reducer.quotes);
+    const { average} = useSelector((state: any) => state.reducer.quotes);
     const { slippages } = useSelector((state: any) => state.reducer.quotes);
 
     useEffect(() => {
         dispatch(getQuotes())
-    },[]);
+    }, []);
 
     useEffect(() => {
-        if (quotes) getQuotesList()
+        if (quotes.length > 0 && average) getQuotesList()
     }, [quotes]);
 
     const getQuotesList = () => {
@@ -26,22 +28,25 @@ export default function Cards() {
 
         const result: any = [];
 
-        quotes.map((quote: any) => {
-            slippages.map((slipp: any) => {
-                if (quote.name === slipp.name) {
-                    result.push({
-                        name: quote.name,
-                        buy_price: quote.buy_price,
-                        sell_price: quote.sell_price,
-                        buy_slippage: slipp.buy_price_slippage,
-                        sell_slippage: slipp.sell_price_slippage
-                    })
-                }
-            })
-        })
+        if (quotes.length > 0 && slippages.length > 0) {
 
-        setQuotes(result)
-    }
+            quotes.map((quote: any) => {
+                slippages.map((slipp: any) => {
+                    if (quote.name === slipp.name) {
+                        result.push({
+                            name: quote.name,
+                            buy_price: quote.buy_price,
+                            sell_price: quote.sell_price,
+                            buy_slippage: slipp.buy_price_slippage,
+                            sell_slippage: slipp.sell_price_slippage
+                        })
+                    }
+                })
+            })
+
+            setQuotes(result)
+        }
+    };
 
     return (
         <Container style={{ width: '60%' }}>
@@ -53,32 +58,32 @@ export default function Cards() {
                                 <Col key={i}>
                                     <Card bg='secondary' style={{ width: '90%' }}>
                                         <Card.Body>
-                                            <Card.Title style={{ color: 'white', height: '10px' }}>{e.name.toUpperCase()}</Card.Title>
+                                            <Card.Title style={styles.card_title}>{e.name.toUpperCase()}</Card.Title>
                                         </Card.Body>
                                         <ListGroup>
                                             <ListGroupItem>
-                                                <div style={{ color: 'black', fontSize: '12px', backgroundColor: '#F4D03F', padding: '5px' }} >COMPRA</div>
-                                                <div style={{ color: 'red ', fontSize: '20px' }}>{e.buy_price ? e.buy_price : '-'}</div>
+                                                <div style={styles.list_title} >COMPRA</div>
+                                                <div style={styles.list_body}>{e.buy_price ? e.buy_price : '-'}</div>
                                             </ListGroupItem>
                                             <ListGroupItem >
-                                                <div style={{ color: 'black', fontSize: '12px', backgroundColor: '#F4D03F', padding: '5px' }} >DIFERENCIA % COMPRA</div>
-                                                <div style={{ color: 'red ', fontSize: '20px' }}>{e.buy_slippage > 0 ? e.buy_slippage : 0} %</div>
+                                                <div style={styles.list_title} >DIFERENCIA % COMPRA</div>
+                                                <div style={styles.list_body}>{e.buy_slippage ? e.buy_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</div>
                                             </ListGroupItem>
                                             <ListGroupItem>
-                                                <div style={{ color: 'black', fontSize: '12px', backgroundColor: '#F4D03F', padding: '5px' }} >VENTA</div>
-                                                <div style={{ color: 'red ', fontSize: '20px' }}>{e.sell_price ? e.sell_price : '-'}</div>
+                                                <div style={styles.list_title} >VENTA</div>
+                                                <div style={styles.list_body} >{e.sell_price ? e.sell_price : '-'}</div>
                                             </ListGroupItem>
                                             <ListGroupItem>
-                                                <div style={{ color: 'black', fontSize: '12px', backgroundColor: '#F4D03F', padding: '5px' }} >DIFERENCIA % VENTA</div>
-                                                <div style={{ color: 'red ', fontSize: '20px' }}>{e.sell_slippage > 0 ? e.sell_slippage : 0} %</div>
+                                                <div style={styles.list_title} >DIFERENCIA % VENTA</div>
+                                                <div style={styles.list_body} >{typeof(e.sell_slippage) === 'number'  ? e.sell_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</div>
                                             </ListGroupItem>
                                         </ListGroup>
                                     </Card>
                                 </Col>
                             )
                         })
-                        : 
-                        <Container style={{ marginTop: '100px', display: 'grid', gridAutoFlow: 'column', gridAutoColumns: '70px', justifyContent: 'center'  }}>
+                        :
+                        <Container className='spinner'>
                             <Spinner animation="grow" variant="warning" />
                             <Spinner animation="grow" variant="warning" />
                             <Spinner animation="grow" variant="warning" />
@@ -90,4 +95,11 @@ export default function Cards() {
         </Container>
 
     );
+
 }
+
+const styles = {
+    card_title: { color: 'white', height: '10px' },
+    list_title: { color: 'black', fontSize: '12px', backgroundColor: '#F4D03F', padding: '5px' },
+    list_body:  { color: 'red ', fontSize: '20px' }
+};

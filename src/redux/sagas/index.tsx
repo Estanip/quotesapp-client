@@ -23,18 +23,17 @@ function* getQuotes(): any {
         let delayOn = false;
         while (true) {
             const data = yield call(api, 'get', 'quotes')
-            if (data) {
+            if (data.success === true) {
                 if (delayOn) {
-                    yield delay(10000)
+                    yield delay(15000)
                 }
                 delayOn = true;
                 yield put({
-                    payload: data,
+                    payload: data.quotesArray,
                     type: actions.GET_QUOTES_SUCCESS
                 })
             }
         }
-
     }
     catch (e) {
         console.log(e)
