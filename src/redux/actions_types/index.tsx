@@ -7,6 +7,6 @@ const actions : IActions = {
     GET_QUOTES_SUCCESS: 'GET_QUOTES_SUCCESS',
     GET_SLIPPAGE_REQUEST: 'GET_SLIPPAGE_REQUEST',
     GET_SLIPPAGE_SUCCESS: 'GET_SLIPPAGE_SUCCESS'
-}
+};
 
 export default actions; 
