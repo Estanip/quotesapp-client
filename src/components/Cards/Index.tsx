@@ -13,27 +13,30 @@ export default function Cards() {
 
     const dispatch = useDispatch();
 
-    const {average} = useTypedSelector((state) => state.quotes)
-    const {quotes}:IState = useTypedSelector((state) => state.quotes)
-    const {slippages}:IState = useTypedSelector((state) => state.quotes)
+    const { quotes }: IState = useTypedSelector((state) => state.quotes)
+    const { slippages }: IState = useTypedSelector((state) => state.quotes)
 
     useEffect(() => {
         dispatch(getQuotes())
-    }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
-        if (quotes.length > 0 && average) getQuotesList()
-    }, [quotes, average]);
+        if (quotes.length > 0) getQuotesList()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [quotes]);
 
     const getQuotesList = () => {
 
         dispatch(getSlippages())
 
-        const result:Array<IQuotesLIst> = [];
+        const result: Array<IQuotesLIst> = [];
 
         if (quotes.length > 0 && slippages.length > 0) {
 
+            // eslint-disable-next-line array-callback-return
             quotes.map((quote: any) => {
+                // eslint-disable-next-line array-callback-return
                 slippages.map((slipp: any) => {
                     if (quote.name === slipp.name) {
                         result.push({
@@ -46,7 +49,6 @@ export default function Cards() {
                     }
                 })
             })
-
             setQuotes(result)
         }
     };
@@ -70,7 +72,7 @@ export default function Cards() {
                                             </ListGroupItem>
                                             <ListGroupItem >
                                                 <div style={styles.list_title} >DIFERENCIA % COMPRA</div>
-                                                <div style={styles.list_body}>{e.buy_slippage ? e.buy_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</div>
+                                                <div style={styles.list_body}>{typeof (e.buy_slippage) === 'number' ? e.buy_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</div>
                                             </ListGroupItem>
                                             <ListGroupItem>
                                                 <div style={styles.list_title} >VENTA</div>
@@ -78,7 +80,7 @@ export default function Cards() {
                                             </ListGroupItem>
                                             <ListGroupItem>
                                                 <div style={styles.list_title} >DIFERENCIA % VENTA</div>
-                                                <div style={styles.list_body} >{typeof(e.sell_slippage) === 'number'  ? e.sell_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</div>
+                                                <div style={styles.list_body} >{typeof (e.sell_slippage) === 'number' ? e.sell_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</div>
                                             </ListGroupItem>
                                         </ListGroup>
                                     </Card>
@@ -104,5 +106,5 @@ export default function Cards() {
 const styles = {
     card_title: { color: 'white', height: '10px' },
     list_title: { color: 'black', fontSize: '12px', backgroundColor: '#F4D03F', padding: '5px' },
-    list_body:  { color: 'red ', fontSize: '20px' }
+    list_body: { color: 'red ', fontSize: '20px' }
 };

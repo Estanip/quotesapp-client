@@ -7,7 +7,7 @@ export const api = (method: string, endpoint: string) =>
   new Promise((resolve, reject) => {
     axios({
       method,
-      url: `${API_PROD}/${endpoint}`
+      url: `${API_DEV}/${endpoint}`
     })
       .then(({ data }) => {
         resolve(data)

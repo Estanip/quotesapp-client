@@ -10,10 +10,10 @@ import './Header.css';
 export default function Header() {
     const dispatch = useDispatch();
 
-    const {average} = useTypedSelector((state) => state.quotes)
-    const {average_sell_price, average_buy_price} = average
+    const { average } = useTypedSelector((state) => state.quotes)
+    const { average_sell_price, average_buy_price } = average
 
-    const {quotes}:IState = useTypedSelector((state) => state.quotes)
+    const { quotes }: IState = useTypedSelector((state) => state.quotes)
 
     useEffect(() => {
         if (quotes.length > 0) dispatch(getAverage())
