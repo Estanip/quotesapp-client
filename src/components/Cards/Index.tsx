@@ -18,7 +18,7 @@ export default function Cards() {
 
     useEffect(() => {
         dispatch(getQuotes())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
