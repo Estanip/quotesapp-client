@@ -54,36 +54,32 @@ export default function Cards() {
     };
 
     return (
-        <Container style={{ width: '60%' }}>
-            <Row>
+        <Container>
+            <Row id='card_row' >
                 {
                     quotesList.length > 0 ?
                         quotesList.map((e: any, i: number) => {
                             return (
-                                <Col key={i}>
-                                    <Card bg='secondary' style={{ width: '90%' }}>
-                                        <Card.Body>
-                                            <Card.Title style={styles.card_title}>{e.name.toUpperCase()}</Card.Title>
-                                        </Card.Body>
-                                        <ListGroup>
-                                            <ListGroupItem>
-                                                <div style={styles.list_title} >COMPRA</div>
-                                                <div style={styles.list_body}>{e.buy_price ? e.buy_price : '-'}</div>
-                                            </ListGroupItem>
-                                            <ListGroupItem >
-                                                <div style={styles.list_title} >DIFERENCIA % COMPRA</div>
-                                                <div style={styles.list_body}>{typeof (e.buy_slippage) === 'number' ? e.buy_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</div>
-                                            </ListGroupItem>
-                                            <ListGroupItem>
-                                                <div style={styles.list_title} >VENTA</div>
-                                                <div style={styles.list_body} >{e.sell_price ? e.sell_price : '-'}</div>
-                                            </ListGroupItem>
-                                            <ListGroupItem>
-                                                <div style={styles.list_title} >DIFERENCIA % VENTA</div>
-                                                <div style={styles.list_body} >{typeof (e.sell_slippage) === 'number' ? e.sell_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</div>
-                                            </ListGroupItem>
-                                        </ListGroup>
-                                    </Card>
+                                <Col key={i} >
+                                    <Container>
+
+                                        <Card id="quote_card" bg='warning' border="secondary">
+                                            <Card.Body>
+                                                <Card.Title className="text-muted" >{e.name.toUpperCase()}</Card.Title>
+                                            </Card.Body>
+                                            <ListGroup>
+                                                <ListGroupItem id='list_item'>COMPRA</ListGroupItem>
+                                                <ListGroupItem id='item_value'>{e.buy_price ? e.buy_price : '-'}</ListGroupItem>
+                                                <ListGroupItem id='list_item'>DIFERENCIA % COMPRA</ListGroupItem>
+                                                <ListGroupItem id='item_value'>{typeof (e.buy_slippage) === 'number' ? e.buy_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</ListGroupItem>
+                                                <ListGroupItem id='list_item'>VENTA</ListGroupItem>
+                                                <ListGroupItem id='item_value'>{e.sell_price ? e.sell_price : '-'}</ListGroupItem>
+                                                <ListGroupItem id='list_item'>DIFERENCIA % VENTA</ListGroupItem>
+                                                <ListGroupItem id='item_value'>{typeof (e.sell_slippage) === 'number' ? e.sell_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</ListGroupItem>
+                                            </ListGroup>
+                                        </Card>
+                                    </Container>
+
                                 </Col>
                             )
                         })
@@ -100,11 +96,4 @@ export default function Cards() {
         </Container>
 
     );
-
 }
-
-const styles = {
-    card_title: { color: 'white', height: '10px' },
-    list_title: { color: 'black', fontSize: '12px', backgroundColor: '#F4D03F', padding: '5px' },
-    list_body: { color: 'red ', fontSize: '20px' }
-};

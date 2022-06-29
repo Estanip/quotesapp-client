@@ -1,19 +1,41 @@
-.card_title { 
-    color: 'white'; 
-    height: 10px;
+small#sm_card {
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 500;
 }
 
-.list_title { 
-    color: 'black';
-    font-size: 12px; 
-    background-color: '#F4D03F';
-    padding: 5px
+.row#card_row {
+    display: flex;
 }
 
-.list_body { 
-    color: 'red';
-    font-size: 20px;
- }
+@media only screen and (max-width: 450px) {
+    .card#quote_card {
+        height: auto;
+        width: auto;
+        margin: 5px;
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .card#quote_card {
+        height: auto;
+        width: 90%;
+    }
+}
+
+.list-group {
+    width: 100%;
+}
+
+.list-group-item#list_item {
+    background-color: ##d1d8e0;
+}
+
+.list-group-item#item_value {
+    background-color: #d1d8e0;
+    color: white;
+}
     
 .spinner { 
     margin-top: 100px; 

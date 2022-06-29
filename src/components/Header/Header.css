@@ -1,21 +1,14 @@
-.card { 
-    padding: 10px;
-    margin-right: -100px;
-};
+strong {
+    color: white;
+}
 
-.title {
-    color: grey;
+small#quotes_limit {
+    margin-left: 10px;
+    margin-right: 10px;
     font-size: 15px;
 };
 
-.quotes_item {
-    font-size: 13px;
-    margin-left: auto;
-    margin-left: auto;
-};
+.navbar-brand {
+    margin-left: initial;
+}
 
-..quotes_limit {
-    margin-left: 10px;
-    margin-right: 10px;
-    font-size: 20px;
-};
