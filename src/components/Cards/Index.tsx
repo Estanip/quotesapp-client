@@ -62,24 +62,22 @@ export default function Cards() {
                             return (
                                 <Col key={i} >
                                     <Container>
-
                                         <Card id="quote_card" bg='warning' border="secondary">
                                             <Card.Body>
-                                                <Card.Title className="text-muted" >{e.name.toUpperCase()}</Card.Title>
+                                                <Card.Title id='source_title' className="text-muted" >{e.name.toUpperCase()}</Card.Title>
                                             </Card.Body>
                                             <ListGroup>
-                                                <ListGroupItem id='list_item'>COMPRA</ListGroupItem>
-                                                <ListGroupItem id='item_value'>{e.buy_price ? e.buy_price : '-'}</ListGroupItem>
-                                                <ListGroupItem id='list_item'>DIFERENCIA % COMPRA</ListGroupItem>
-                                                <ListGroupItem id='item_value'>{typeof (e.buy_slippage) === 'number' ? e.buy_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</ListGroupItem>
-                                                <ListGroupItem id='list_item'>VENTA</ListGroupItem>
-                                                <ListGroupItem id='item_value'>{e.sell_price ? e.sell_price : '-'}</ListGroupItem>
-                                                <ListGroupItem id='list_item'>DIFERENCIA % VENTA</ListGroupItem>
-                                                <ListGroupItem id='item_value'>{typeof (e.sell_slippage) === 'number' ? e.sell_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</ListGroupItem>
+                                                <ListGroupItem className='bg-secondary text-white'>COMPRA</ListGroupItem>
+                                                <ListGroupItem id='item_value' className='text-danger'>{e.buy_price ? e.buy_price : '-'}</ListGroupItem>
+                                                <ListGroupItem className='bg-secondary text-white'>DIFERENCIA % COMPRA</ListGroupItem>
+                                                <ListGroupItem id='item_value' className='text-success'>{typeof (e.buy_slippage) === 'number' ? e.buy_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</ListGroupItem>
+                                                <ListGroupItem className='bg-secondary text-white'>VENTA</ListGroupItem>
+                                                <ListGroupItem id='item_value' className='text-danger'>{e.sell_price ? e.sell_price : '-'}</ListGroupItem>
+                                                <ListGroupItem className='bg-secondary text-white'>DIFERENCIA % VENTA</ListGroupItem>
+                                                <ListGroupItem id='item_value' className='text-success'>{typeof (e.sell_slippage) === 'number' ? e.sell_slippage : <Spinner size='sm' animation="border" variant="secondary" />} %</ListGroupItem>
                                             </ListGroup>
                                         </Card>
                                     </Container>
-
                                 </Col>
                             )
                         })
@@ -94,6 +92,5 @@ export default function Cards() {
                 }
             </Row>
         </Container>
-
     );
 }

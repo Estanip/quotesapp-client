@@ -1,11 +1,14 @@
 strong {
-    color: white;
+    color: black;
+    font-size: 0.9rem;
+    letter-spacing: 0.1rem;
+    margin-left: 0.2rem;
 }
 
 small#quotes_limit {
-    margin-left: 10px;
-    margin-right: 10px;
-    font-size: 15px;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+    font-size: 1rem;
 };
 
 .navbar-brand {
